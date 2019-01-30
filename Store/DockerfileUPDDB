@@ -1,0 +1,10 @@
+FROM microsoft/dotnet
+WORKDIR /app
+
+COPY . .
+
+RUN dotnet restore Store.csproj
+RUN dotnet publish -c Release -o out
+
+RUN chmod +x ./updateDB.sh
+CMD /bin/bash ./updateDB.sh

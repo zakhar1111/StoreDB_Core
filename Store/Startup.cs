@@ -36,8 +36,9 @@ namespace Store
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<StoreContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("StoreContext")));
+            //services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("StoreContext")));
+            var connection = @"Server=db;Database=storedb;User=sa;Password=dbuserpasswordqwWA12!@;";
+            services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
