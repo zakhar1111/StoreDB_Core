@@ -1,0 +1,38 @@
+version: "3"
+services:
+    db:
+        image: "microsoft/mssql-server-linux"
+        #hostname: 'db'
+        #container_name: db
+        environment:
+            SQL_DATABASE: 'storedb'
+            SA_NAME: 'sa'
+            SA_PASSWORD: 'dbuserpasswordqwWA12!@'
+            ACCEPT_EULA: "Y"
+        ports:
+            - "1433:1433"
+        tty: true
+        #restart: always
+        networks:
+            - storenet
+    web:
+        build: .
+        ports:
+            - "8080:80"
+        depends_on:
+            - db
+        networks:
+            - storenet
+    web2:
+        build:
+            context: .
+            dockerfile: DockerfileUPDDB
+        depends_on:
+            - db
+            - web
+        networks:
+            - storenet
+   
+networks:
+  storenet:
+    driver: bridge
