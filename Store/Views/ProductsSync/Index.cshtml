@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Index Sync</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -45,7 +45,8 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a> 
+                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a> |
+                <a asp-controller="ProductsSync" asp-action="RsvpForm">Add to Cart</a>
             </td>
         </tr>
 }

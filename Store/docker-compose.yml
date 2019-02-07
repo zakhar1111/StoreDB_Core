@@ -19,7 +19,6 @@ services:
         build: .
         ports:
             - "80"
-            #- "8080:80"
         depends_on:
             - db
         networks:
@@ -34,7 +33,7 @@ services:
         networks:
             - back-tier
     lb:
-        image: 'dockercloud/harproxy'
+        image: 'dockercloud/haproxy'
         ports:
             - "8080:80"
         links:

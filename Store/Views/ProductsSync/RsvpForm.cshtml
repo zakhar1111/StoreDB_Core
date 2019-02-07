@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Store.Models.CartLine>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <title>Responses</title>
+</head>
+<p>
+    <a asp-controller="ProductsSync" asp-action="Index">Back to products</a>
+</p>
+<body>
+    <div class="panel-body">
+        <h2>Here is the list of products in the cart</h2>
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Store.Models.CartLine r in Model)
+                {
+                    <tr>
+                        <td>@r.Product.Name</td>
+                        <td>@r.Product.Price</td>
+                        <td>@r.Quantity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

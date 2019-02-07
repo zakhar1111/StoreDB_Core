@@ -23,12 +23,10 @@ namespace Store
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -39,6 +37,13 @@ namespace Store
             //services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("StoreContext")));
             var connection = @"Server=db;Database=storedb;User=sa;Password=dbuserpasswordqwWA12!@;";
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection));
+            /*services.AddAntiforgery(options =>
+            {
+                // Set Cookie properties using CookieBuilder properties†.
+                options.FormFieldName = "AntiforgeryFieldname";
+                options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
+                options.SuppressXFrameOptionsHeader = true;
+            });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
