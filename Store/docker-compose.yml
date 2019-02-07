@@ -2,8 +2,6 @@ version: "3"
 services:
     db:
         image: "microsoft/mssql-server-linux"
-        #hostname: 'db'
-        #container_name: db
         environment:
             SQL_DATABASE: 'storedb'
             SA_NAME: 'sa'
