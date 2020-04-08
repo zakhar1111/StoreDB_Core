@@ -1,9 +1,11 @@
 stages:
-- name: dev
+- name: build
   steps:
   - publishImageConfig:
       dockerfilePath: ./Store/Dockerfile
       buildContext: .
       tag: coretest
+      pushRemote: true
+      registry: 127.0.0.1:34958
 timeout: 60
 notification: {}
