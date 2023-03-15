@@ -1,4 +1,4 @@
-name: dotnet package
+name: CI
 
 on:
   workflow_dispatch:
@@ -29,5 +29,6 @@ jobs:
         with:
           image: dockertest0891/sport-store-image
           registry: docker.io
+          dockerfile: Store/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
