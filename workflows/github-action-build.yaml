@@ -1,6 +1,10 @@
 name: dotnet package
 
-on: [push]
+on:
+  push:
+    branches: [ "GitWorkflow" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   build:
