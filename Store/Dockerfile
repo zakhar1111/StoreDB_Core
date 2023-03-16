@@ -1,10 +1,18 @@
-FROM mcr.microsoft.com/dotnet/aspnet:2.1 AS build
+FROM mcr.microsoft.com/dotnet/aspnet:2.1 AS base
 WORKDIR /app
-COPY . .
- 
-RUN dotnet restore
- 
-RUN dotnet publish Store.csproj -o publish
-WORKDIR /app/publish
-ENTRYPOINT ["dotnet", "Store.dll"]
 
+FROM mcr.microsoft.com/dotnet/sdk:2.1 AS build
+WORKDIR /src
+COPY ["Store/Store.csproj", "store/"]
+RUN dotnet restore "Store/Store.csproj"
+COPY . .
+WORKDIR "/src/Store"
+RUN dotnet build "Store.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "Store.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Store.dll"]
