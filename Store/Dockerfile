@@ -1,4 +1,4 @@
-FROM microsoft/dotnet AS build
+FROM mcr.microsoft.com/dotnet/aspnet:2.1 AS build
 WORKDIR /app
 COPY . .
  
